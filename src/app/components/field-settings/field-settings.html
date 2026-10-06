@@ -4,7 +4,7 @@
       <h3 class="panel-title">Field Settings</h3>
       <p class="panel-subtitle">{{ definition()?.label }}</p>
     </div>
-    <button mat-icon-button matTooltip="Delete field" (click)="delete()">
+    <button mat-icon-button matTooltip="Delete field" aria-label="Delete field" (click)="delete()">
       <mat-icon>delete_outline</mat-icon>
     </button>
   </div>
@@ -18,7 +18,7 @@
     <mat-label>Field name (form control)</mat-label>
     <input matInput [value]="f.name" (input)="update('name', $any($event.target).value)" />
     @if (nameError()) {
-      <mat-hint class="error-hint">{{ nameError() }}</mat-hint>
+      <mat-error>{{ nameError() }}</mat-error>
     }
   </mat-form-field>
 
@@ -97,7 +97,7 @@
           <mat-label>Value</mat-label>
           <input matInput [value]="o.value" (input)="updateOption(i, { value: $any($event.target).value })" />
         </mat-form-field>
-        <button mat-icon-button matTooltip="Remove option" (click)="removeOption(i)">
+        <button mat-icon-button matTooltip="Remove option" aria-label="Remove option" (click)="removeOption(i)">
           <mat-icon>remove_circle_outline</mat-icon>
         </button>
       </div>
@@ -106,6 +106,6 @@
 } @else {
   <div class="empty">
     <mat-icon>tune</mat-icon>
-    <p>Select a field on the form to edit its settings.</p>
+    <p>Select a field to customize.</p>
   </div>
 }

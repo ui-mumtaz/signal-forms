@@ -1,43 +1,58 @@
-<mat-toolbar class="toolbar">
-  <mat-icon class="logo">dynamic_form</mat-icon>
-  <input
-    class="title-input"
-    aria-label="Form title"
-    [value]="formService.title()"
-    (input)="formService.setTitle($any($event.target).value)"
-  />
-  <span class="spacer"></span>
+<header class="hero">
+  <h1 class="hero-title">Signal Forms Designer</h1>
+  <p class="hero-subtitle">Design, preview, and export forms built with Angular Material and Signal Forms.</p>
+</header>
 
-  <mat-button-toggle-group
-    hideSingleSelectionIndicator
-    [value]="mode()"
-    (change)="mode.set($event.value)"
-    aria-label="Mode"
-  >
-    <mat-button-toggle value="edit"><mat-icon>edit</mat-icon> Edit</mat-button-toggle>
-    <mat-button-toggle value="preview"><mat-icon>visibility</mat-icon> Preview</mat-button-toggle>
-  </mat-button-toggle-group>
-
-  <span class="spacer"></span>
-
+<div class="toolbar">
   <input #fileInput type="file" accept=".json,application/json" hidden (change)="importJson(fileInput)" />
-  <button mat-button matTooltip="Load a form from a JSON schema" (click)="fileInput.click()">
+  <button mat-stroked-button matTooltip="Load a form from a JSON schema" (click)="fileInput.click()">
     <mat-icon>upload_file</mat-icon> Import
   </button>
-  <button mat-button matTooltip="Remove all fields" (click)="clear()">
+  <button mat-stroked-button matTooltip="Remove all fields" (click)="clear()">
     <mat-icon>delete_sweep</mat-icon> Clear
   </button>
-  <button mat-flat-button (click)="exportCode()">
-    <mat-icon>code</mat-icon> Export code
+  <button mat-flat-button class="export-button" (click)="exportCode()">
+    <mat-icon>download</mat-icon> Export Form
   </button>
-</mat-toolbar>
+</div>
 
-@if (mode() === 'edit') {
-  <main class="builder">
-    <aside class="side left"><app-field-types-panel /></aside>
-    <section class="canvas"><app-form-editor /></section>
-    <aside class="side right"><app-field-settings /></aside>
-  </main>
-} @else {
-  <main class="preview"><app-form-preview /></main>
-}
+<main class="builder">
+  <aside class="side left panel-card"><app-field-types-panel /></aside>
+
+  <section class="canvas-card panel-card">
+    <header class="canvas-header">
+      <input
+        class="form-title-input"
+        aria-label="Form title"
+        [value]="formService.title()"
+        (input)="formService.setTitle($any($event.target).value)"
+      />
+      <div class="canvas-actions">
+        <mat-button-toggle-group
+          hideSingleSelectionIndicator
+          [value]="mode()"
+          (change)="mode.set($event.value)"
+          aria-label="Mode"
+        >
+          <mat-button-toggle value="edit">Editor</mat-button-toggle>
+          <mat-button-toggle value="preview">Preview</mat-button-toggle>
+        </mat-button-toggle-group>
+        @if (mode() === 'edit') {
+          <button mat-flat-button (click)="formService.addRow()">
+            <mat-icon>add</mat-icon> Add Row
+          </button>
+        }
+      </div>
+    </header>
+
+    <div class="canvas-body">
+      @if (mode() === 'edit') {
+        <app-form-editor />
+      } @else {
+        <app-form-preview />
+      }
+    </div>
+  </section>
+
+  <aside class="side right panel-card"><app-field-settings /></aside>
+</main>

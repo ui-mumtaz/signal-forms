@@ -19,6 +19,8 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
+.claude
+.agents
 
 # Visual Studio Code
 .vscode/*
@@ -38,6 +40,10 @@ yarn-error.log
 testem.log
 /typings
 __screenshots__/
+
+# Python (skill scripts)
+__pycache__/
+*.pyc
 
 # System files
 .DS_Store

@@ -4,7 +4,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ExportCodeDialog } from './components/export-code-dialog/export-code-dialog';
 import { FieldSettings } from './components/field-settings/field-settings';
@@ -16,7 +15,6 @@ import { FormService } from './services/form.service';
 @Component({
   selector: 'app-root',
   imports: [
-    MatToolbarModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatIconModule,

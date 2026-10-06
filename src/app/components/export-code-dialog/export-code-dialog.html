@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Export code</h2>
 <mat-dialog-content>
-  <p class="intro">A standalone Angular Material component using reactive forms. Copy each file into your project.</p>
+  <p class="intro">A standalone Angular Material component using Signal Forms. Copy each file into your project.</p>
   <mat-tab-group [selectedIndex]="selected()" (selectedIndexChange)="selected.set($event)" animationDuration="0ms">
     @for (file of files; track file.fileName) {
       <mat-tab [label]="file.label">

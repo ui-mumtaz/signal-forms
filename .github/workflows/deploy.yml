@@ -27,7 +27,7 @@ jobs:
 
       - run: npm ci
 
-      - run: npx ng build --base-href /Form_Builder/
+      - run: npx ng build --base-href /signal-forms/
 
       - uses: actions/upload-pages-artifact@v3
         with:

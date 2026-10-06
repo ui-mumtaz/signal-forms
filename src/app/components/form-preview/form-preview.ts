@@ -39,7 +39,6 @@ export class FormPreview {
   private readonly formService = inject(FormService);
   private readonly injector = inject(Injector);
 
-  protected readonly title = this.formService.title;
   protected readonly rows = computed(() => this.formService.rows().filter((r) => r.fields.length));
 
   /** A live form built from the current schema. Rebuilt whenever the field list changes. */

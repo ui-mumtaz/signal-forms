@@ -15,10 +15,10 @@
 }
 
 .row {
-  background: var(--mat-sys-surface-container-lowest);
-  border: 1px solid var(--mat-sys-outline-variant);
-  border-radius: var(--mat-sys-corner-medium);
-  padding: 4px 12px 12px;
+  background: var(--mat-sys-surface);
+  border: 2px dashed var(--app-dashed-border);
+  border-radius: 12px;
+  padding: 8px 12px 12px;
 }
 
 .row-header {
@@ -32,6 +32,17 @@
 .row-handle {
   display: flex;
   cursor: grab;
+}
+
+.row-title {
+  font-family: var(--app-font-display);
+  font-weight: 700;
+  color: var(--mat-sys-primary);
+}
+
+.row-reorder {
+  display: flex;
+  margin-left: 4px;
 }
 
 .spacer {
@@ -98,7 +109,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  border: 2px dashed var(--mat-sys-outline-variant);
+  background: var(--app-page-bg);
   border-radius: var(--mat-sys-corner-small);
   color: var(--mat-sys-on-surface-variant);
   font: var(--mat-sys-body-medium);
@@ -108,10 +119,6 @@
 .cdk-drop-list-dragging .empty-row,
 .cdk-drop-list-receiving .empty-row {
   display: none;
-}
-
-.add-row {
-  margin-top: 16px;
 }
 
 .cdk-drag-placeholder {

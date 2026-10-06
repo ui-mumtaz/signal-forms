@@ -7,9 +7,31 @@
             <mat-icon>drag_indicator</mat-icon>
           </span>
           <span class="row-title">Row {{ i + 1 }}</span>
+          <div class="row-reorder">
+            <button
+              mat-icon-button
+              class="small-icon-button"
+              matTooltip="Move row up"
+              aria-label="Move row up"
+              [disabled]="i === 0"
+              (click)="formService.moveRow(i, i - 1); $event.stopPropagation()"
+            >
+              <mat-icon>keyboard_arrow_up</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              class="small-icon-button"
+              matTooltip="Move row down"
+              aria-label="Move row down"
+              [disabled]="i === rows().length - 1"
+              (click)="formService.moveRow(i, i + 1); $event.stopPropagation()"
+            >
+              <mat-icon>keyboard_arrow_down</mat-icon>
+            </button>
+          </div>
           <span class="spacer"></span>
-          <button mat-icon-button matTooltip="Delete row" (click)="formService.deleteRow(row.id); $event.stopPropagation()">
-            <mat-icon>delete_outline</mat-icon>
+          <button mat-icon-button matTooltip="Delete row" aria-label="Delete row" (click)="formService.deleteRow(row.id); $event.stopPropagation()">
+            <mat-icon>close</mat-icon>
           </button>
         </div>
 
@@ -32,7 +54,7 @@
             >
               <div class="field-toolbar">
                 <span class="field-name">{{ field.name }}</span>
-                <button mat-icon-button class="small-icon-button" matTooltip="Delete field" (click)="deleteField(field.id, $event)">
+                <button mat-icon-button class="small-icon-button" matTooltip="Delete field" aria-label="Delete field" (click)="deleteField(field.id, $event)">
                   <mat-icon>close</mat-icon>
                 </button>
               </div>
@@ -41,16 +63,11 @@
           } @empty {
             <div class="empty-row">
               <mat-icon>add_circle_outline</mat-icon>
-              Drop fields here
+              Drag and drop form elements here
             </div>
           }
         </div>
       </div>
     }
   </div>
-
-  <button mat-stroked-button class="add-row" (click)="formService.addRow(); $event.stopPropagation()">
-    <mat-icon>add</mat-icon>
-    Add row
-  </button>
 </div>

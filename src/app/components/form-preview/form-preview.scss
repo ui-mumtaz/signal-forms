@@ -1,15 +1,11 @@
 :host {
   display: block;
-  padding: 24px;
+  padding: 20px 24px;
 }
 
-.preview-card {
+.result {
   max-width: 960px;
-  margin: 0 auto 24px;
-}
-
-mat-card-content {
-  padding-top: 16px;
+  margin: 16px 0 0;
 }
 
 .form-row {

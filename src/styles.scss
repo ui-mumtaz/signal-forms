@@ -4,12 +4,18 @@ html {
   color-scheme: light;
   @include mat.theme((
     color: (
-      primary: mat.$violet-palette,
-      tertiary: mat.$cyan-palette,
+      primary: mat.$cyan-palette,
+      tertiary: mat.$azure-palette,
     ),
     typography: Roboto,
     density: 0,
   ));
+
+  /* Display font for headings and chrome; Roboto stays on data/input text. */
+  --app-font-display: 'Poppins', Roboto, 'Helvetica Neue', sans-serif;
+  --app-page-bg: #eaf4fc;
+  --app-card-border: #e2e8f0;
+  --app-dashed-border: #cbd5e1;
 }
 
 html,
@@ -20,8 +26,16 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
-  background: var(--mat-sys-surface);
+  background: var(--app-page-bg);
   color: var(--mat-sys-on-surface);
+}
+
+/* A floating white surface used by every top-level panel (palette, canvas, settings). */
+.panel-card {
+  background: var(--mat-sys-surface);
+  border: 1px solid var(--app-card-border);
+  border-radius: 16px;
+  box-shadow: var(--mat-sys-level1);
 }
 
 /* Drag previews are attached to <body>, outside component styles. */
