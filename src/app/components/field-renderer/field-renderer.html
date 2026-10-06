@@ -1,0 +1,64 @@
+@let f = field();
+@switch (f.type) {
+  @case ('textarea') {
+    <mat-form-field appearance="outline">
+      <mat-label>{{ f.label }}</mat-label>
+      <textarea matInput [rows]="f.rows ?? 3" [formField]="$any(ctrl())" [placeholder]="f.placeholder ?? ''"></textarea>
+      @if (f.hint) { <mat-hint>{{ f.hint }}</mat-hint> }
+      <mat-error>{{ errorMessage() }}</mat-error>
+    </mat-form-field>
+  }
+  @case ('select') {
+    <mat-form-field appearance="outline">
+      <mat-label>{{ f.label }}</mat-label>
+      <mat-select [formField]="$any(ctrl())" [placeholder]="f.placeholder ?? ''">
+        @for (o of f.options ?? []; track $index) {
+          <mat-option [value]="o.value">{{ o.label }}</mat-option>
+        }
+      </mat-select>
+      @if (f.hint) { <mat-hint>{{ f.hint }}</mat-hint> }
+      <mat-error>{{ errorMessage() }}</mat-error>
+    </mat-form-field>
+  }
+  @case ('date') {
+    <mat-form-field appearance="outline">
+      <mat-label>{{ f.label }}</mat-label>
+      <input matInput [matDatepicker]="picker" [formField]="$any(ctrl())" [placeholder]="f.placeholder ?? ''" />
+      <mat-datepicker-toggle matIconSuffix [for]="picker" />
+      <mat-datepicker #picker />
+      @if (f.hint) { <mat-hint>{{ f.hint }}</mat-hint> }
+      <mat-error>{{ errorMessage() }}</mat-error>
+    </mat-form-field>
+  }
+  @case ('radio') {
+    <div class="choice-field">
+      <label class="choice-label">{{ f.label }}@if (f.required) { <span> *</span> }</label>
+      <mat-radio-group [formField]="$any(ctrl())">
+        @for (o of f.options ?? []; track $index) {
+          <mat-radio-button [value]="o.value">{{ o.label }}</mat-radio-button>
+        }
+      </mat-radio-group>
+      @if (state().touched() && state().invalid()) { <mat-error>{{ errorMessage() }}</mat-error> }
+    </div>
+  }
+  @case ('checkbox') {
+    <div class="choice-field">
+      <mat-checkbox [formField]="$any(ctrl())">{{ f.label }}@if (f.required) { <span> *</span> }</mat-checkbox>
+      @if (state().touched() && state().invalid()) { <mat-error>{{ errorMessage() }}</mat-error> }
+    </div>
+  }
+  @case ('toggle') {
+    <div class="choice-field">
+      <mat-slide-toggle [formField]="$any(ctrl())">{{ f.label }}@if (f.required) { <span> *</span> }</mat-slide-toggle>
+      @if (state().touched() && state().invalid()) { <mat-error>{{ errorMessage() }}</mat-error> }
+    </div>
+  }
+  @default {
+    <mat-form-field appearance="outline">
+      <mat-label>{{ f.label }}</mat-label>
+      <input matInput [type]="f.type" [formField]="$any(ctrl())" [placeholder]="f.placeholder ?? ''" />
+      @if (f.hint) { <mat-hint>{{ f.hint }}</mat-hint> }
+      <mat-error>{{ errorMessage() }}</mat-error>
+    </mat-form-field>
+  }
+}
